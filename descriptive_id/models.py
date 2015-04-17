@@ -7,7 +7,10 @@ from django.db import models
 
 class DescriptiveIDMixin(models.Model):
 
-    number = models.CharField(max_length=25)
+    def generate_number(self):
+        return '{prepend}_'.format(prepend=self.DIDMeta.prepend) + ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(14))
+
+    number = models.CharField(max_length=25, default=generate_number)
 
     class Meta:
         abstract = True
@@ -19,4 +22,4 @@ class DescriptiveIDMixin(models.Model):
             pk = None
             super().__init__(*args, **kwargs)
         if not pk:
-            self.number = '{prepend}_'.format(prepend=self.DIDMeta.prepend) + ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(14))
+            self.number = self.generate_number()
