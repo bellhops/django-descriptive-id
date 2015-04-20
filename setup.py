@@ -6,7 +6,7 @@ from distutils.core import setup
 setup(
     name='descriptive_id',
     packages=['descriptive_id'],
-    version='0.1.1',
+    version='0.1.2',
     description='django-descriptive-id is an abstract model that you can use as a mixin to give your models a human-readable, unique identifier.',
     author='Bellhops',
     author_email='tech@getbellhops.com',
