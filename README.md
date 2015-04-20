@@ -2,11 +2,15 @@
 
 ```We're not the id you don't know what to do with, we're the other one```
 
-django-descriptive-id is an abstract model that you can use as a mixin to give your models a human-readable, unique identifier.
+django-descriptive-id is an abstract model that you can use as a mixin to give your models a human-readable identifier.
+
+### About
+
+The ```number``` field added by django-descriptive-id has ```null=True``` because, as of Django 1.8, you can not add a unique constraint to a field that already has a table in the DB.
 
 ### Usage
 
-```pip install django-descriptive-id```
+```pip install descriptive-id```
 
 Add ```DescriptiveIDMixin``` to a model as a mixin:
 
