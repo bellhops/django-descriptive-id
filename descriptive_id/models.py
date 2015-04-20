@@ -21,6 +21,6 @@ class DescriptiveIDMixin(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        if not self.pk or not self.number:
             self.number = self._generate_number()
         super().save(*args, **kwargs)
