@@ -5,4 +5,4 @@ from descriptive_id.fields import DescriptiveIDField
 
 
 class MyModel(models.Model):
-    number = DescriptiveIDField(prepend='mdl')
+    number = DescriptiveIDField(prefix='mdl')

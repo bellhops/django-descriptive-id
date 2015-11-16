@@ -8,14 +8,14 @@ from django.db.models import CharField
 
 class DescriptiveIDField(CharField):
 
-    def __init__(self, prepend=None, auto=True, *args, **kwargs):
-        if not prepend:
-            raise ValueError("Prepend is a required argument.")
+    def __init__(self, prefix=None, auto=True, *args, **kwargs):
+        if not prefix:
+            raise ValueError("The 'prefix=' argument is a required keyword argument.")
         else:
-            self.prepend = prepend
+            self.prefix = prefix
         self.auto = auto
 
-        kwargs['max_length'] = len(self.prepend) + 15
+        kwargs['max_length'] = len(self.prefix) + 15
 
         if auto:
             # Do not let the user edit UUIDs if they are auto-assigned.
@@ -27,7 +27,7 @@ class DescriptiveIDField(CharField):
     def deconstruct(self):
         name, path, args, kwargs = super(DescriptiveIDField, self).deconstruct()
 
-        kwargs['prepend'] = self.prepend
+        kwargs['prefix'] = self.prefix
 
         if self.auto:
             kwargs.pop('editable')
@@ -38,7 +38,7 @@ class DescriptiveIDField(CharField):
         return name, path, args, kwargs
 
     def _generate_descriptive_id(self):
-        return '{prepend}_'.format(prepend=self.prepend) + ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(14))
+        return '{prefix}_'.format(prefix=self.prefix) + ''.join(random.choice(string.digits + string.ascii_letters) for _ in range(14))
 
     def pre_save(self, model_instance, add):
         """
