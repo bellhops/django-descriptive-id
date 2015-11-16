@@ -31,3 +31,21 @@ number = DescriptiveIDField(prefix='my_prefix')
 ```
 
 ```django-descriptive-id``` will append a random (but human-readable) string to the given prefix and store the result in the field.
+
+### Development
+
+If you need to do development over this library, you can make use of the example application to test your developments.
+
+Create a new virtual environment using virtualenv, and install the requirements from the example app into the virtual environment:
+
+```
+pip install -r example/requirements.txt
+```
+
+When you have made changes to the library, install the library into your virtual environment directly:
+
+```
+python setup.py install
+```
+
+The example app can then be initialized with migrations that make use of the field with your copy of the code installed.
