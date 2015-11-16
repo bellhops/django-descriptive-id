@@ -56,3 +56,10 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# IntelliJ
+.idea
+
+# Example
+.venv
+example/db.sqlite3
