@@ -10,7 +10,7 @@ class DescriptiveIDField(CharField):
 
     def __init__(self, prepend=None, auto=True, *args, **kwargs):
         if not prepend:
-            raise Exception
+            raise ValueError("Prepend is a required argument.")
         else:
             self.prepend = prepend
         self.auto = auto
@@ -26,11 +26,15 @@ class DescriptiveIDField(CharField):
 
     def deconstruct(self):
         name, path, args, kwargs = super(DescriptiveIDField, self).deconstruct()
+
+        kwargs['prepend'] = self.prepend
+
         if self.auto:
             kwargs.pop('editable')
             kwargs.pop('blank')
             kwargs.pop('unique')
             kwargs['auto'] = True
+
         return name, path, args, kwargs
 
     def _generate_descriptive_id(self):
@@ -41,8 +45,8 @@ class DescriptiveIDField(CharField):
         This is used to ensure that we auto-set values if required.
         See CharField.pre_save
         """
-        value = getattr(model_instance, self.attname, None)
-        if self.auto and add and not value:
+        descriptive_id = getattr(model_instance, self.attname, None)
+        if self.auto and add and not descriptive_id:
             # Assign a new value for this attribute if required.
             descriptive_id = self._generate_descriptive_id()
             setattr(model_instance, self.attname, descriptive_id)
