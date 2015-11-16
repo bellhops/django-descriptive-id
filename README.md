@@ -30,7 +30,13 @@ Add a `DescriptiveIDField` to any model:
 number = DescriptiveIDField(prefix='my_prefix')
 ```
 
-```django-descriptive-id``` will append a random (but human-readable) string to the given prefix and store the result in the field.
+```django-descriptive-id``` will append a random (but human-readable) string to the given prefix and store the result in the field when an instance is added.
+
+For the above example that might look something like:
+
+```
+'my_prefix_HLxGPQoemYERpN'
+```
 
 ### Development
 
