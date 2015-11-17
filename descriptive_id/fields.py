@@ -28,6 +28,7 @@ class DescriptiveIDField(CharField):
         name, path, args, kwargs = super(DescriptiveIDField, self).deconstruct()
 
         kwargs['prefix'] = self.prefix
+        kwargs['auto'] = self.auto
 
         if self.auto:
             kwargs.pop('editable')
