@@ -27,6 +27,9 @@ INSTALLED_APPS = (
 Add a `DescriptiveIDField` to any model:
 
 ```
+from descriptive_id.fields import DescriptiveIDField
+
+
 number = DescriptiveIDField(prefix='my_prefix')
 ```
 
