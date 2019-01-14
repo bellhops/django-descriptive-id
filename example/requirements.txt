@@ -1,4 +1,4 @@
-Django==1.8.6
+Django==1.8
 django-extensions==1.5.9
 ipdb==0.8.1
 ipython==4.0.0
